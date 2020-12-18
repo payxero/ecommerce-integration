@@ -1,0 +1,80 @@
+<div #scriptCollect></div>
+<div #script></div>
+<form [formGroup]="cardForm">
+
+    <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap.gt-xs="4%">
+        <mat-form-field fxFlex.gt-xs='48' class="display-inline">
+            <mat-label>Name on Card</mat-label>
+            <input matInput formControlName="name" required />
+            <mat-error ngxErrors="name">
+                <div ngxError="required" when="['dirty', 'touched']"
+                     *ngIf="!cardForm.get('name').hasError('pattern')">
+                    Name is required
+                </div>
+                <div ngxError="pattern" when="['dirty', 'touched']" *ngIf="cardForm.get('name').hasError('pattern')">
+                    Name is invalid
+                </div>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex.gt-xs='48' class="display-inline">
+            <mat-label>Zip/Postal Code</mat-label>
+            <input matInput formControlName="zipCode" required />
+            <mat-error ngxErrors="zipCode">
+                <div ngxError="required" when="['dirty', 'touched']"
+                     *ngIf="cardForm.get('zipCode').hasError('required')">
+                    Zip/Postal Code is required
+                </div>
+                <div ngxError="pattern" when="['dirty', 'touched']"
+                     *ngIf="cardForm.get('zipCode').hasError('pattern')">
+                    Zip/Postal Code is invalid
+                </div>
+            </mat-error>
+        </mat-form-field>
+    </div>
+
+    <div fxLayout="column">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="4%" fxLayoutAlign.gt-sm="none center">
+            <mat-form-field fxFlex.gt-xs='48' floatLabel="always" class="w-100-p">
+                <mat-label>Card Number *</mat-label>
+                <input matInput formControlName="cardNumber" hidden />
+                <div id="demoCcnumber" #demoCcnumber ></div>
+
+                <mat-error ngxErrors="cardNumber">
+                    <div ngxError="error" when="['dirty', 'touched']"
+                         *ngIf="cardForm.controls['cardNumber']?.errors?.error">
+                        {{cardErrorMsg['cardNumber']}}
+                    </div>
+                </mat-error>
+
+            </mat-form-field>
+
+            <div fxFlex.gt-xs='48' fxLayout="row" fxLayoutGap="4%">
+                <mat-form-field fxFlex="100" class="display-inline" floatLabel="always" class="w-100-p">
+                    <mat-label>Exp. Date *</mat-label>
+                    <input matInput formControlName="expDate" hidden />
+                    <div id="demoCcexp" #demoCcexp></div>
+
+                    <mat-error ngxErrors="expDate">
+                        <div ngxError="error" when="['dirty', 'touched']"
+                             *ngIf="cardForm.controls['expDate']?.errors?.error">
+                            {{cardErrorMsg['expDate']}}
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field fxFlex="100" class="display-inline" floatLabel="always" class="w-100-p">
+                    <mat-label>CVV/CVC *</mat-label>
+                    <input matInput formControlName="cardCVV" hidden />
+                    <div id="demoCvv" #demoCvv></div>
+                    <mat-error ngxErrors="cardCVV">
+                        <div ngxError="error" when="['dirty', 'touched']"
+                             *ngIf="cardForm.controls['cardCVV']?.errors?.error">
+                            {{cardErrorMsg['cardCVV']}}
+                        </div>
+                    </mat-error>
+                </mat-form-field>
+                <button id="payButton" #buttonCard type="button" hidden>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

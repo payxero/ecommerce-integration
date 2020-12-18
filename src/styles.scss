@@ -1,0 +1,139 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'zpay-theme.scss';
+
+body {
+  margin: 0;
+  background-color: rgb(243, 246, 251)
+}
+
+#app-card-info {
+  // Temporary prefix alignment fix
+  .mat-form-field-appearance-outline .mat-form-field-prefix,
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0;
+  }
+
+  .mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 180px;
+  }
+  .w-100-p {
+    width: 100%;
+  }
+}
+#demoCcnumber input,
+#demoCcexp input,
+#demoCvv input {
+  border: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-stretch: 100%;
+  font-style: normal;
+  font-variant-caps: normal;
+  font-variant-east-asian: normal;
+  font-variant-ligatures: normal;
+  font-variant-numeric: normal;
+  font-weight: 400;
+}
+
+$white: #ffffff;
+$soft-gray: #dddddd;
+
+.supported-cards {
+  display: inline-block;
+  list-style: none;
+  margin: 0 0 0 0.5em;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    margin-right: 0.3em;
+  }
+
+  li > img {
+    vertical-align: middle;
+    width: 30px;
+  }
+}
+
+.card {
+  background-color: $white;
+  border: solid 1px #e2e8ef;
+  margin-bottom: 30px;
+  border-radius: 3px;
+}
+
+.card-title {
+  color: #1d252a;
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 600;
+  border-bottom: solid 1px $soft-gray;
+  padding: 25px;
+}
+
+.card-content {
+  padding: 25px;
+
+  &:nth-child(1) {
+    line-height: 50px;
+  }
+
+  ul {
+    margin: 50px 0 20px 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 24px 0 0 0;
+    }
+  }
+}
+
+button[disabled] {
+  opacity: 0.4;
+}
+
+button.button-useCard {
+  margin-top: 20px;
+}
+
+::ng-deep {
+  .mat-form-field-infix {
+    width: 100% !important;
+  }
+}
+
+.title {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+  margin-bottom: 0.5em;
+}
+
+.mx-24 {
+  margin-right: 24px;
+  margin-left: 24px;
+}
+
+.display-inline {
+  display: inline;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.app-content {
+  min-height: 78vh;
+}
+
+.app-content mat-card {
+  margin: 20px;
+}
+

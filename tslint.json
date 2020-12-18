@@ -1,0 +1,3 @@
+{
+  "extends": "./src/app/modules/core/tslint-config/angular.json"
+}

@@ -1,0 +1,71 @@
+
+<div
+  [ngStyle.xl]="{ 'margin-top.px': 50 }"
+  [ngStyle.lg]="{ 'margin-top.px': 50 }"
+  [ngStyle.md]="{ 'margin-top.px': 50 }"
+  class="app-content"
+  fxLayout="row"
+  fxFlex
+  fxLayoutAlign="center start"
+>
+  <div fxFlex.gt-sm="700" fxFlex="100" fxLayoutAlign="center start">
+    <div
+      fxFlex="100"
+      fxFlex.gt-md="800px"
+      fxLayout="column"
+      class="mx-24"
+    >
+      <div class="card">
+        <div class="card-title">
+          Card Information
+          <ul fxShow.xs="false" class="supported-cards">
+            <li>
+              <img
+                src="./assets/cards/visa.png"
+                alt="Visa"
+              />
+            </li>
+            <li>
+              <img
+                src="./assets/cards/discover.png"
+                alt="Discover"
+              />
+            </li>
+            <li>
+              <img
+                src="./assets/cards/mastercard.png"
+                alt="Master Card"
+              />
+            </li>
+            <li>
+              <img
+                src="assets/cards/americanexp.png"
+                alt="American Express"
+              />
+            </li>
+          </ul>
+        </div>
+        <div class="card-content">
+          <div>
+            <app-card-info fxFlex="100"
+                           #formCardInfo
+                           [publicKey]="publicKey"
+                           (onLoadCard)="loadCardInfo($event)"
+                           class="mt-12">
+            </app-card-info>
+          </div>
+          <button
+            class="button-useCard"
+            (click)="$event.preventDefault(); submitPayment()"
+            type="button"
+            mat-button
+            mat-raised-button
+            color="primary">
+            Submit Payment
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

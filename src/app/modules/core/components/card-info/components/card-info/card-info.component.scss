@@ -1,0 +1,36 @@
+#app-card-info {
+  // Temporary prefix alignment fix
+  .mat-form-field-appearance-outline .mat-form-field-prefix,
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: 0;
+  }
+
+  .mat-form-field-infix {
+    display: block;
+    position: relative;
+    flex: auto;
+    min-width: 0;
+    width: 180px;
+  }
+  .w-100-p {
+    width: 100%;
+  }
+}
+#demoCcnumber input,
+#demoCcexp input,
+#demoCvv input {
+  border: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-stretch: 100%;
+  font-style: normal;
+  font-variant-caps: normal;
+  font-variant-east-asian: normal;
+  font-variant-ligatures: normal;
+  font-variant-numeric: normal;
+  font-weight: 400;
+}
+
+.hidden {
+  display: none;
+}

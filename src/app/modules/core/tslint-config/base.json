@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "switch-default": true,
+    "max-line-length": [
+      true,
+      180
+    ]
+  }
+}
