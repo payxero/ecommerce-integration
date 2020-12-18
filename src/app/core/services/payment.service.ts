@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { ICardInfo } from '@appCore/interfaces/ICardInfo.interfece';
+import { ICardInfo } from '../interfaces/ICardInfo.interfece';
 
 @Injectable({
     providedIn: 'root',

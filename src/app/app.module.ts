@@ -4,12 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { MaterialModule } from './modules/material.module';
-import { ZeroCardInfoModule } from '@appCore/components/card-info/card-info.module';
-import { PaymentService } from '@appCore/services';
-import { RouterModule } from '@angular/router';
+import { MaterialModule } from './material.module';
+import { CardInfoModule } from './core/components/card-info/card-info.module';
+import { PaymentService } from './core/services/payment.service';
 
 @NgModule({
   imports: [
@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
     MaterialModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
-    ZeroCardInfoModule
+    CardInfoModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

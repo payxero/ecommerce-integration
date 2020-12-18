@@ -17,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 
-import { ICardInfo } from '@appCore/interfaces';
+import { ICardInfo } from '../../../../interfaces/ICardInfo.interfece';
 
 @Component({
     selector: 'app-card-info',

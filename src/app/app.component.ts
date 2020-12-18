@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { ICardInfo } from '@appCore/interfaces';
-import { PaymentService } from '@appCore/services';
+
+import { ICardInfo } from './core/interfaces/ICardInfo.interfece';
+import { PaymentService } from './core/services/payment.service';
 
 @Component({
   selector: 'app-root',

@@ -23,5 +23,5 @@ import { CardInfoComponent } from './components/card-info/card-info.component';
         CardInfoComponent,
     ],
 })
-export class ZeroCardInfoModule {
+export class CardInfoModule {
 }
