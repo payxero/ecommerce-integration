@@ -17,7 +17,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
 
-import { ICardInfo } from '../../../../interfaces/ICardInfo.interfece';
+import { ICardInfo } from '../../../../interfaces';
 
 @Component({
     selector: 'app-card-info',
@@ -40,14 +40,14 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
         cvv: false
     };
 
-    @ViewChild('script', { static: false }) script: ElementRef;
-    @ViewChild('scriptCollect', { static: false }) scriptCollect: ElementRef;
+    @ViewChild('script') script: ElementRef;
+    @ViewChild('scriptCollect') scriptCollect: ElementRef;
 
-    @ViewChild('demoCcnumber', { static: false }) demoCcnumber: ElementRef;
-    @ViewChild('demoCcexp', { static: false }) demoCcexp: ElementRef;
-    @ViewChild('demoCvv', { static: false }) demoCvv: ElementRef;
+    @ViewChild('demoCcnumber') demoCcnumber: ElementRef;
+    @ViewChild('demoCcexp') demoCcexp: ElementRef;
+    @ViewChild('demoCvv') demoCvv: ElementRef;
 
-    @ViewChild('buttonCard', { static: false }) buttonCard: ElementRef;
+    @ViewChild('buttonCard') buttonCard: ElementRef;
 
     // Private
     private _unsubscribeAll: Subject<any>;

@@ -9,19 +9,21 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { CardInfoModule } from './core/components/card-info/card-info.module';
-import { PaymentService } from './core/services/payment.service';
+import { PaymentService } from './core/services';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    CardInfoModule,
     FlexLayoutModule,
     FormsModule,
+    GraphQLModule,
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
-    CardInfoModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
