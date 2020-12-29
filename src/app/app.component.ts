@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import * as _ from 'lodash';
 
@@ -16,7 +17,10 @@ export class AppComponent {
   cardInfo: ICardInfo;
   charge: any;
 
-  constructor(private paymentService: PaymentService) {
+  constructor(
+      private paymentService: PaymentService,
+      private matSnackBar: MatSnackBar,
+  ) {
     this.publicKey = 'q7nFSA-YbnMWa-rQmamh-Jvm5Ep';
   }
 
@@ -30,7 +34,21 @@ export class AppComponent {
 
   submitPayment() {
     if (this.cardInfo) {
-      this.paymentService.submitPayment(this.charge);
+      this.paymentService.submitPayment(this.charge).then(response => {
+        if (_.hasIn(response, 'errors') && !_.isNil(response.errors)) {
+          const message = response.errors[0].message
+          this.matSnackBar.open(`There was an error sending the query. ${message}`, 'OK', {
+            verticalPosition: 'top',
+            duration: 5000,
+          });
+        } else {
+          const transaction = _.get(response.data, 'transactionId');
+          this.matSnackBar.open(`Transaction ${transaction} Success`, 'OK', {
+            verticalPosition: 'top',
+            duration: 5000,
+          });
+        }
+      });
     }
   }
 }

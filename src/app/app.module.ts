@@ -10,7 +10,6 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { CardInfoModule } from './core/components/card-info/card-info.module';
 import { PaymentService } from './core/services';
-import { GraphQLModule } from './graphql.module';
 
 @NgModule({
   imports: [
@@ -19,7 +18,6 @@ import { GraphQLModule } from './graphql.module';
     CardInfoModule,
     FlexLayoutModule,
     FormsModule,
-    GraphQLModule,
     HttpClientModule,
     MaterialModule,
     ReactiveFormsModule,
