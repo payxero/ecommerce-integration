@@ -36,17 +36,21 @@
                            #formCardInfo
                            [publicKey]="publicKey"
                            (onLoadCard)="loadCardInfo($event)"
+                           (onSendLoading)="loading = $event"
+                           (onValidForm)="isValid = $event"
                            class="mt-12">
             </app-card-info>
           </div>
           <button class="button-useCard"
                   (click)="$event.preventDefault(); submitPayment()"
-                  [disabled]="!cardInfo"
+                  [disabled]="!isValid || !cardInfo"
                   type="button"
                   mat-button
                   mat-raised-button
                   color="primary">
-            Submit Payment
+            <app-loading *ngIf="loading">
+            </app-loading>
+            <span *ngIf="!loading">Submit Payment</span>
           </button>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { CardInfoModule } from './core/components/card-info/card-info.module';
 import { PaymentService } from './core/services';
+import { LoadingModule } from './core/components/loading/loading.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { PaymentService } from './core/services';
     FlexLayoutModule,
     FormsModule,
     HttpClientModule,
+    LoadingModule,
     MaterialModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),

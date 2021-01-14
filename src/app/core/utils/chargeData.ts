@@ -1,7 +1,7 @@
 export const chargeData = {
   clientId: '5d4340994406a6001c1f9e03',
-  amount: 0.5,
-  surcharge: 0.1,
+  amount: 100,
+  surcharge: 0,
   contact: {
     email: 'demo.ecommerce@gmail.com',
     phone: '5555555555'

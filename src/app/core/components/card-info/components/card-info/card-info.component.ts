@@ -31,6 +31,8 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
 
     @Input() publicKey: string;
     @Output() onLoadCard: EventEmitter<ICardInfo>;
+    @Output() onSendLoading: EventEmitter<boolean>;
+    @Output() onValidForm: EventEmitter<boolean>;
 
     cardErrorMsg = [];
 
@@ -39,6 +41,7 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
         ccexp: false,
         cvv: false
     };
+    cardInfo: ICardInfo;
 
     @ViewChild('script') script: ElementRef;
     @ViewChild('scriptCollect') scriptCollect: ElementRef;
@@ -70,6 +73,8 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
         this.tokenization = new Subject();
         this.loadExternalCollectJs = false;
         this.onLoadCard = new EventEmitter();
+        this.onSendLoading = new EventEmitter();
+        this.onValidForm = new EventEmitter();
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -260,6 +265,10 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
         if (this.validCard['ccnumber'] && this.validCard['ccexp'] && this.validCard['cvv']) {
             this.buttonCard.nativeElement.click();
             this.tokenization.next(true);
+            this.onValidForm.emit(true);
+            this.onSendLoading.emit(!this.cardInfo);
+        } else {
+            this.onValidForm.emit(false);
         }
     }
 
@@ -269,7 +278,7 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
 
         const card = _.get(detail, 'card');
         const { name, zipCode } = this.cardForm.getRawValue();
-        const cardInfo: ICardInfo = {
+        this.cardInfo = {
             bin: _.get(card, 'bin'),
             number: _.get(card, 'number'),
             network: _.get(card, 'type'),
@@ -278,9 +287,9 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
             ...(!_.isNil(name) && { name }),
             ...(!_.isNil(zipCode) && { zipCode }),
         } as ICardInfo;
-
-        this.onLoadCard.emit(cardInfo);
+        this.onLoadCard.emit(this.cardInfo);
         this.tokenization.next(false);
+        this.onSendLoading.emit(false);
     }
 
     @HostListener('window:CallScriptCollectJS', ['$event'])

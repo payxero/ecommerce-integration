@@ -16,6 +16,8 @@ export class AppComponent {
   publicKey: string;
   cardInfo: ICardInfo;
   charge: any;
+  loading = false;
+  isValid = false;
 
   constructor(
       private paymentService: PaymentService,
@@ -24,7 +26,7 @@ export class AppComponent {
     this.publicKey = 'q7nFSA-YbnMWa-rQmamh-Jvm5Ep';
   }
 
-  loadCardInfo(card: ICardInfo) {
+  loadCardInfo(card: ICardInfo): void {
     const zip = _.get(card, 'zipCode');
     this.cardInfo = _.omit(card, ['zipCode']);
     this.charge = chargeData;
@@ -32,21 +34,24 @@ export class AppComponent {
     this.charge.billingAddress.zipCode = zip;
   }
 
-  submitPayment() {
-    if (this.cardInfo) {
+  submitPayment(): void {
+    if (this.cardInfo && this.isValid) {
+      this.loading = true;
       this.paymentService.submitPayment(this.charge).then(response => {
         if (_.hasIn(response, 'errors') && !_.isNil(response.errors)) {
-          const message = response.errors[0].message
+          const message = response.errors[0].message;
           this.matSnackBar.open(`There was an error sending the query. ${message}`, 'OK', {
             verticalPosition: 'top',
             duration: 5000,
           });
+          this.loading = false;
         } else {
           const transaction = _.get(response.data, 'transactionId');
           this.matSnackBar.open(`Transaction ${transaction} Success`, 'OK', {
             verticalPosition: 'top',
             duration: 5000,
           });
+          this.loading = false;
         }
       });
     }
