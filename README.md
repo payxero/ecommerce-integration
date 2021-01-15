@@ -17,5 +17,5 @@ npm install
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-##App Server
+## App Server
 Our backend application server is a NodeJS application, please download <a href="https://github.com/ZeroSurcharging/ecommerce-integration-api" target="_blank">ecommerce-integration-api</a>.
