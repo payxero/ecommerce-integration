@@ -2,7 +2,7 @@
 This repo demonstrates how to connect to the API from an angular application.
 
 # Stack
-Angular on the client
+Angular on the client<br/>
 Backend: Nest.js
 
 ## Get the Code
