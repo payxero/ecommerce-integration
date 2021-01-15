@@ -23,7 +23,7 @@ export class AppComponent {
       private paymentService: PaymentService,
       private matSnackBar: MatSnackBar,
   ) {
-    this.publicKey = 'q7nFSA-YbnMWa-rQmamh-Jvm5Ep';
+    this.publicKey = '2TQdje-6MfPE8-NSUa5B-B44w5K';
   }
 
   loadCardInfo(card: ICardInfo): void {
