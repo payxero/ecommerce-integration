@@ -7,8 +7,7 @@
             <mat-label>Name on Card</mat-label>
             <input matInput formControlName="name" required />
             <mat-error ngxErrors="name">
-                <div ngxError="required" when="['dirty', 'touched']"
-                     *ngIf="!cardForm.get('name').hasError('pattern')">
+                <div ngxError="required" when="['dirty', 'touched']" *ngIf="!cardForm.get('name').hasError('pattern')">
                     Name is required
                 </div>
                 <div ngxError="pattern" when="['dirty', 'touched']" *ngIf="cardForm.get('name').hasError('pattern')">
@@ -21,11 +20,10 @@
             <input matInput formControlName="zipCode" required />
             <mat-error ngxErrors="zipCode">
                 <div ngxError="required" when="['dirty', 'touched']"
-                     *ngIf="cardForm.get('zipCode').hasError('required')">
+                    *ngIf="cardForm.get('zipCode').hasError('required')">
                     Zip/Postal Code is required
                 </div>
-                <div ngxError="pattern" when="['dirty', 'touched']"
-                     *ngIf="cardForm.get('zipCode').hasError('pattern')">
+                <div ngxError="pattern" when="['dirty', 'touched']" *ngIf="cardForm.get('zipCode').hasError('pattern')">
                     Zip/Postal Code is invalid
                 </div>
             </mat-error>
@@ -36,12 +34,12 @@
         <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="4%" fxLayoutAlign.gt-sm="none center">
             <mat-form-field fxFlex.gt-xs='48' floatLabel="always" class="w-100-p">
                 <mat-label>Card Number *</mat-label>
-                <input matInput formControlName="cardNumber" hidden />
-                <div id="demoCcnumber" #demoCcnumber ></div>
+                <input matInput formControlName="cardNumber" hidden class="over-field">
+                <div id="demoCcnumber" #demoCcnumber></div>
 
                 <mat-error ngxErrors="cardNumber">
                     <div ngxError="error" when="['dirty', 'touched']"
-                         *ngIf="cardForm.controls['cardNumber']?.errors?.error">
+                        *ngIf="cardForm.controls['cardNumber']?.errors?.error">
                         {{cardErrorMsg['cardNumber']}}
                     </div>
                 </mat-error>
@@ -56,7 +54,7 @@
 
                     <mat-error ngxErrors="expDate">
                         <div ngxError="error" when="['dirty', 'touched']"
-                             *ngIf="cardForm.controls['expDate']?.errors?.error">
+                            *ngIf="cardForm.controls['expDate']?.errors?.error">
                             {{cardErrorMsg['expDate']}}
                         </div>
                     </mat-error>
@@ -67,7 +65,7 @@
                     <div id="demoCvv" #demoCvv></div>
                     <mat-error ngxErrors="cardCVV">
                         <div ngxError="error" when="['dirty', 'touched']"
-                             *ngIf="cardForm.controls['cardCVV']?.errors?.error">
+                            *ngIf="cardForm.controls['cardCVV']?.errors?.error">
                             {{cardErrorMsg['cardCVV']}}
                         </div>
                     </mat-error>

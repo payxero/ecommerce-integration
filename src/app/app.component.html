@@ -21,17 +21,12 @@
                     </ul>
                 </div>
                 <div class="card-content">
-                    <div>
-                        <app-card-info fxFlex="100" #formCardInfo [publicKey]="publicKey"
-                            (onLoadCard)="loadCardInfo($event)" (onSendLoading)="loading = $event"
-                            (onValidForm)="isValid = $event" class="mt-12">
-                        </app-card-info>
-                    </div>
-                    <form [formGroup]="paymentForm">
+
+                    <form [formGroup]="paymentForm" style="margin-bottom: 16px">
                         <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap.gt-xs="4%">
                             <mat-form-field fxFlex.gt-xs='48' class="display-inline">
                                 <mat-label>Amount</mat-label>
-                                <input matInput formControlName="amount" required type="number" />
+                                <input matInput formControlName="amount" required type="number" placeholder="0.00" />
                                 <mat-hint>
                                     Credit Card Fee {{ customerFee / 100 | currency : '' :
                                     'symbol' : '1.2-2' }}
@@ -49,26 +44,55 @@
                                 </mat-error>
 
                             </mat-form-field>
-                            <div>
-                                <button class="button-useCard" (click)="$event.preventDefault(); checkRate()"
-                                    [disabled]="!isValid || !cardInfo" type="button" mat-button mat-raised-button
-                                    color="primary">
-                                    <app-loading *ngIf="loading">
-                                    </app-loading>
-                                    <span *ngIf="!loading">Check rate</span>
-                                </button>
-                            </div>
                         </div>
+                        <div class="mb-12">
+                            <button class="button-useCard" (click)="$event.preventDefault(); nextAmount()" type="button"
+                                mat-button mat-raised-button color="primary">
+                                <app-loading *ngIf="loading">
+                                </app-loading>
+                                <span *ngIf="!loading">Next</span>
+                            </button>
+                        </div>
+
                     </form>
+                    <div>
+                        <app-card-info fxFlex="100" #formCardInfo [publicKey]="publicKey" *ngIf="showCardInfo"
+                            (onLoadCard)="loadCardInfo($event)" (onSendLoading)="loading = $event"
+                            (onValidForm)="isValid = $event" class="mt-12">
+                        </app-card-info>
+                    </div>
+                    <button class="button-useCard" (click)="$event.preventDefault(); userThisCard()"
+                        *ngIf="showCardInfo" [disabled]="!isValid || !cardInfo" type="button" mat-button
+                        mat-raised-button color="primary">
+                        <app-loading *ngIf="loading">
+                        </app-loading>
+                        <span *ngIf="!loading">Use This card</span>
+                    </button>
+                    <br />
+                    <div fxLayout="column" fxLayoutAlign="flex-start" *ngIf="totalAmount">
+                        <p style="margin-bottom: 0;">
+                            <strong>Base Amount:</strong>
+                            {{ paymentForm.controls['amount'].value | currency : '' : 'symbol' : '1.2-2' }}
+                        </p>
+                        <p style="margin: 0;">
+                            <strong>Surcharge:</strong>
+                            {{ (customerFee / 100) | currency : '' : 'symbol' : '1.2-2' }}
+                        </p>
+
+                        <p style="margin: 0;">
+                            <strong>Total:</strong>
+                            {{ totalAmount / 100 | currency : '' : 'symbol': '1.2-2' }}
+                        </p>
+                    </div>
                     <button class="button-useCard" (click)="$event.preventDefault(); submitPayment()"
-                        [disabled]="!isValid || !cardInfo" type="button" mat-button mat-raised-button color="primary">
+                        *ngIf="totalAmount" [disabled]="!isValid || !cardInfo" type="button" mat-button
+                        mat-raised-button color="primary" hidden>
                         <app-loading *ngIf="loading">
                         </app-loading>
                         <span *ngIf="!loading">Submit Payment</span>
                     </button>
                 </div>
             </div>
-
         </div>
     </div>
 </div>

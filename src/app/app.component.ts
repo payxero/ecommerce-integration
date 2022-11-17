@@ -1,10 +1,8 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import * as _ from 'lodash';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 
 import { ICardInfo } from './core/interfaces';
 import { PaymentService } from './core/services';
@@ -23,8 +21,10 @@ export class AppComponent implements OnInit {
     loading = false;
     isValid = false;
     customerFee = 0;
+    totalAmount = 0;
     paymentForm: FormGroup;
 
+    showCardInfo = false;
 
     constructor(
         private paymentService: PaymentService,
@@ -40,12 +40,20 @@ export class AppComponent implements OnInit {
     */
     ngOnInit(): void {
         this.paymentForm = this._formBuilder.group({
-            amount: [chargeData.amount, [Validators.required, Validators.min(0.01)]],
+            amount: [null, [Validators.required, Validators.min(0.01)]],
         });
-
     }
 
-    public checkRate(): void {
+    public nextAmount(): void {
+        this.paymentForm.valid
+        if (this.isFormValid(this.paymentForm)) {
+            this.showCardInfo = true;
+
+            this.paymentForm.disable();
+        }
+    }
+
+    public userThisCard(): void {
         if (this.cardInfo && this.isValid) {
             this.charge.amount = this.paymentForm.controls['amount'].value * 100;
             this.loading = true;
@@ -59,6 +67,7 @@ export class AppComponent implements OnInit {
                     this.loading = false;
                 } else {
                     this.customerFee = _.get(response.data, 'surcharge');
+                    this.totalAmount = _.get(response.data, 'totalAmount');
                     this.charge.surcharge = this.customerFee;
                     this.matSnackBar.open(`Success calculate rate`, 'OK', {
                         verticalPosition: 'top',
@@ -69,8 +78,6 @@ export class AppComponent implements OnInit {
             });
         }
     }
-
-
 
     loadCardInfo(card: ICardInfo): void {
         const zip = _.get(card, 'zipCode');
@@ -108,6 +115,13 @@ export class AppComponent implements OnInit {
                 setTimeout(() => { location.reload(); }, 7000);
             });
         }
+    }
+
+    private isFormValid(form: FormGroup | FormControl): boolean {
+        form.updateValueAndValidity();
+        form.markAllAsTouched();
+
+        return form.valid;
     }
 
 }

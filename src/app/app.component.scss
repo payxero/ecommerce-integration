@@ -1,18 +1,22 @@
 #app-card-info {
-  // Temporary prefix alignment fix
-  .mat-form-field-appearance-outline .mat-form-field-prefix,
-  .mat-form-field-appearance-outline .mat-form-field-suffix {
-    top: 0;
-  }
+    // Temporary prefix alignment fix
+    .mat-form-field-appearance-outline .mat-form-field-prefix,
+    .mat-form-field-appearance-outline .mat-form-field-suffix {
+        top: 0;
+    }
 
-  .mat-form-field-infix {
-    display: block;
-    position: relative;
-    flex: auto;
-    min-width: 0;
-    width: 180px;
-  }
-  .w-100-p {
-    width: 100%;
-  }
+    .mat-form-field-infix {
+        display: block;
+        position: relative;
+        flex: auto;
+        min-width: 0;
+        width: 180px;
+    }
+    .w-100-p {
+        width: 100%;
+    }
+}
+.mat-raised-button.mat-button-disabled {
+    color: #1172e8 !important;
+    border: solid 2px #1172e8 !important;
 }
