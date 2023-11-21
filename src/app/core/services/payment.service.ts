@@ -22,7 +22,6 @@ export class PaymentService {
     }
 
     submitRate(info: any): Promise<any> {
-        console.log(info)
         return new Promise((resolve, reject) => {
             this.http.get(`${this.apiUrl}/rate`,
                 {
