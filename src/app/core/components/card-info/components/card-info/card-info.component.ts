@@ -107,7 +107,7 @@ export class CardInfoComponent implements OnInit, OnDestroy, AfterViewInit {
 
         const scriptLoad = this._renderer2.createElement('script');
         scriptLoad.setAttribute('type', 'text/javascript');
-        scriptLoad.setAttribute('src', 'https://merchant.paywithzero.net/client/token/Collect.js');
+        scriptLoad.setAttribute('src', 'https://gateway.paywithzero.net/v1/gateway/ZeroGateway.js');
         scriptLoad.setAttribute('data-tokenization-key', this.publicKey);
 
         scriptLoad.setAttribute('onload', 'loadCallScriptCollectJS()');

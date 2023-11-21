@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
         private _formBuilder: FormBuilder,
 
     ) {
-        this.publicKey = '2TQdje-6MfPE8-NSUa5B-B44w5K';
+        this.publicKey = 'c620ea06-199e-4eb4-bfc2-2b684fa95f7f';
     }
 
     /**

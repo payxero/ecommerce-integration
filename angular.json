@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ecommerce-integration"
+    }
+  },
+  "defaultProject": "ecommerce-integration",
+  "cli": {
+    "analytics": false
+  }
 }
